@@ -1,0 +1,43 @@
+# 試行の記録。3.7GB あり、第三者サイトのスクリーンショットと
+# その再現物が入っている。集計結果は資料（Artifact）側に出す
+runs/
+
+# 参照スクリーンショットは配布しない。
+# 第三者のUIをリポジトリに同梱すると、ライセンスと権利の扱いが
+# 1つ1つ違ってくる。target.json だけを置き、
+# `pnpm target:add <slug> <url>` で各自が撮り直す構成にしてある
+targets/**/reference*.png
+targets/**/reference*.webp
+targets/**/slice-*.png
+targets/**/slice-*.webp
+targets/**/extracted.json
+
+# 公開できない素材のターゲット一式（商用サイトの記事本文と写真が写る）
+targets/newspicks-*/
+targets/_archived/newspicks-*/
+harness/knowledge/targets/newspicks-*.md
+
+# 知見の版履歴。7.1MB あり、分割前の固有値が残っている
+harness/knowledge/history/
+
+# 意図的に外したもの（既知性など）
+_excluded/
+
+# 生成物・一時物
+node_modules/
+packages/ui/.snapshots/
+sandbox/src/App.tsx
+.DS_Store
+*.log
+
+# 参照の元素材（第三者の記事本文と写真）。手元には残すが配布しない
+UI Pocket_*/
+mycheck/
+
+# 作業中の一時ファイル
+harness/_*.mts
+harness/_*.mjs
+harness/_*.ts
+*.tmp.ts
+sandbox/.mycheck/
+sandbox/dist/

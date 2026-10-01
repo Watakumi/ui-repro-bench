@@ -1,0 +1,57 @@
+{
+  "name": "ui-bench",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "trial": "tsx harness/run.ts",
+    "campaign": "tsx harness/campaign.ts",
+    "selftest": "tsx harness/selftest.ts",
+    "smoke": "tsx harness/smoke.ts",
+    "probe": "tsx harness/probe.ts",
+    "capture": "tsx harness/capture-cli.ts",
+    "capture:states": "tsx harness/capture-states.ts",
+    "target:add": "tsx harness/target-add.ts",
+    "extract": "tsx harness/extract.ts",
+    "report": "tsx harness/report.ts",
+    "gallery": "tsx harness/gallery.ts",
+    "rescore": "tsx harness/rescore.ts",
+    "trace": "tsx harness/trace.ts",
+    "audit:gates": "tsx harness/audit-gates.ts",
+    "judge:repeat": "tsx harness/judge-repeat.ts",
+    "reflect": "tsx harness/reflect.ts",
+    "knowledge:split": "tsx harness/split-knowledge.ts",
+    "isolate:restore": "tsx harness/isolate-fs.ts",
+    "calibrate": "tsx harness/calibrate.ts",
+    "lint:trial": "sh -c 'eslint --no-config-lookup -c harness/lint/eslint.config.mjs -f json \"$0/App.final.tsx\" $0/lib/*.tsx'",
+    "typecheck": "tsc --noEmit",
+    "score": "tsx harness/score-cli.ts"
+  },
+  "dependencies": {
+    "@anthropic-ai/claude-agent-sdk": "^0.3.282",
+    "pixelmatch": "^7.1.0",
+    "playwright": "^1.50.0",
+    "pngjs": "^7.0.0",
+    "sharp": "^0.34.0"
+  },
+  "devDependencies": {
+    "@shadcn/lint": "^0.2.0",
+    "@types/node": "^24.0.0",
+    "@types/pngjs": "^6.0.5",
+    "@typescript-eslint/parser": "^8.70.1",
+    "eslint": "^10.11.0",
+    "tsx": "^4.19.0",
+    "typescript": "^5.7.0"
+  },
+  "description": "参照スクリーンショットからのUI再現を、機械的な合否で測るベンチマークと検証ツール",
+  "license": "MIT",
+  "keywords": [
+    "ui",
+    "benchmark",
+    "screenshot",
+    "playwright",
+    "claude",
+    "agent",
+    "visual-regression"
+  ]
+}
