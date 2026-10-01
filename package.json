@@ -45,6 +45,7 @@
     "typescript": "^5.7.0"
   },
   "description": "参照スクリーンショットからのUI再現を、機械的な合否で測るベンチマークと検証ツール",
+  "packageManager": "pnpm@11.22.0",
   "license": "MIT",
   "keywords": [
     "ui",
