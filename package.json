@@ -15,6 +15,7 @@
     "target:add": "tsx harness/target-add.ts",
     "extract": "tsx harness/extract.ts",
     "report": "tsx harness/report.ts",
+    "report:md": "tsx harness/report-md.ts",
     "gallery": "tsx harness/gallery.ts",
     "rescore": "tsx harness/rescore.ts",
     "trace": "tsx harness/trace.ts",

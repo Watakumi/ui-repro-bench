@@ -108,6 +108,8 @@ made transferability measurable at all.
 - **Most of the wasted turns were defects in the measurement, not the agent** — 5 cases of
   the agent gaming a metric against 30 defects in the harness itself.
 
+> Full per-condition tables and the gate audit: [`docs/RESULTS.md`](docs/RESULTS.md) (regenerate with `pnpm report:md`).
+
 ## Why the reference screenshots are not in the repository
 
 Rights differ site by site. Only `target.json` is committed — capture settings, thresholds,
