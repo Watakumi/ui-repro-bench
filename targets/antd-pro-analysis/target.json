@@ -1,0 +1,123 @@
+{
+  "slug": "antd-pro-analysis",
+  "title": "Analysis - Ant Design Pro",
+  "notes": "https://preview.pro.ant.design/dashboard/analysis から採取。要素の棚卸しと radix.expected は未記入（pnpm extract で埋める）。",
+  "source": "https://preview.pro.ant.design/dashboard/analysis",
+  "capturedAt": "2026-09-22T08:36:48.362Z",
+  "route": "/",
+  "viewport": {
+    "width": 1470,
+    "height": 956
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "light",
+  "fullPage": false,
+  "thresholds": {
+    "rawDiff": 0.15,
+    "layoutDiff": 0.01
+  },
+  "maxTurns": 12,
+  "maxBudgetUsd": 24,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  },
+  "radix": {
+    "expected": [
+      {
+        "element": "ヘッダー右のアイコンボタン群（ドキュメント／分岐／地球）",
+        "primitive": "Tooltip",
+        "note": "ホバーで説明が出るアイコンボタン。地球は言語切替のトリガーも兼ねる"
+      },
+      {
+        "element": "言語切替メニュー（地球アイコン）",
+        "primitive": "DropdownMenu",
+        "note": "クリックで言語一覧が開く"
+      },
+      {
+        "element": "ユーザーアバター＋「ProUser」",
+        "primitive": "DropdownMenu",
+        "note": "クリックで個人設定・ログアウトのメニューが開く。表示部は Avatar"
+      },
+      {
+        "element": "サイドバーの開閉グループ（Admin / Dashboard / Form / List / Profile / Result / Exception / Account）",
+        "primitive": "Accordion",
+        "note": "シェブロンで子メニューを開閉する。Dashboard のみ展開状態"
+      },
+      {
+        "element": "サイドバー折りたたみトグル（‹ の丸ボタン）",
+        "primitive": "Toggle",
+        "note": "押すとサイドバーが縮小表示に切り替わる二値の状態"
+      },
+      {
+        "element": "カード見出し横のインフォアイコン（i）",
+        "primitive": "Tooltip",
+        "note": "ホバーで指標の説明を出す"
+      },
+      {
+        "element": "グラデーションのプログレスバー（78%）",
+        "primitive": "Progress",
+        "note": "値を持つ進捗表示。表示専用だが意味的に Progress"
+      },
+      {
+        "element": "カード内のフッター区切り線",
+        "primitive": "Separator",
+        "note": "単なる水平の罫線"
+      },
+      {
+        "element": "メインチャートのタブ（销售额 / 访问量）",
+        "primitive": "Tabs",
+        "note": "クリックでチャートの内容が切り替わる"
+      },
+      {
+        "element": "期間セグメント（今日 / 本周 / 本月 / 本年）",
+        "primitive": "ToggleGroup",
+        "note": "排他選択のセグメント。本年が選択中（青文字）"
+      },
+      {
+        "element": "日付レンジ入力（2026-01-01 → 2026-12-31＋カレンダーアイコン）",
+        "primitive": "Popover",
+        "note": "クリックでカレンダーパネルが開く"
+      },
+      {
+        "element": "月別売上の棒グラフ（1月〜12月、Y軸0〜1200）",
+        "primitive": "Tooltip",
+        "note": "バーはホバーで数値ツールチップを出す。描画自体はSVG"
+      },
+      {
+        "element": "カード右上の「…」メニュー",
+        "primitive": "DropdownMenu",
+        "note": "クリックで操作メニューが開く"
+      },
+      {
+        "element": "チャネル切替セグメント（全部渠道 / 线上 / 门店）",
+        "primitive": "ToggleGroup",
+        "note": "排他選択のセグメントコントロール"
+      },
+      {
+        "element": "销售额类别占比のドーナツチャート＋引き出しラベル",
+        "primitive": "Tooltip",
+        "note": "扇形のホバーで内訳を表示。描画はSVG"
+      },
+      {
+        "element": "右端に固定された設定ギアボタン",
+        "primitive": "Dialog",
+        "note": "クリックでテーマ設定のドロワーが右から開く"
+      }
+    ],
+    "notApplicable": [
+      {
+        "element": "アプリロゴ＋「Ant Design Pro」タイトル",
+        "reason": "ホーム遷移リンク。素のaタグ＋SVGロゴで足りる"
+      },
+      {
+        "element": "サイドバーのリンク項目（Welcome / AI Assistant）",
+        "reason": "子を持たない単純なナビリンク。素のaタグで足りる"
+      },
+      {
+        "element": "サブメニュー項目（Analysis / Monitor / Workplace）",
+        "reason": "素のリンク。選択中の Analysis は背景 #ededed の角丸ハイライト"
+      }
+    ]
+  },
+  "publishable": true
+}

@@ -1,0 +1,82 @@
+[
+  {
+    "name": "default",
+    "note": "初期表示"
+  },
+  {
+    "name": "filters-expanded",
+    "note": "検索フォームを展開",
+    "actions": [
+      {
+        "type": "click",
+        "text": "Expand"
+      },
+      {
+        "type": "wait",
+        "ms": 600
+      }
+    ],
+    "undo": [
+      {
+        "type": "click",
+        "text": "Collapse"
+      },
+      {
+        "type": "wait",
+        "ms": 600
+      }
+    ]
+  },
+  {
+    "name": "new-modal",
+    "note": "New でモーダルを開く",
+    "actions": [
+      {
+        "type": "click",
+        "text": "New"
+      },
+      {
+        "type": "wait",
+        "ms": 900
+      }
+    ],
+    "undo": [
+      {
+        "type": "click",
+        "text": "Cancel"
+      },
+      {
+        "type": "wait",
+        "ms": 600
+      }
+    ]
+  },
+  {
+    "name": "row-selected",
+    "note": "先頭2行を選択（一括操作バーが出る）",
+    "actions": [
+      {
+        "type": "click",
+        "selector": "tbody tr:nth-child(1) input[type=checkbox]"
+      },
+      {
+        "type": "click",
+        "selector": "tbody tr:nth-child(2) input[type=checkbox]"
+      },
+      {
+        "type": "wait",
+        "ms": 600
+      }
+    ],
+    "undo": [
+      {
+        "type": "click",
+        "text": "Clear"
+      },
+      {
+        "type": "wait",
+        "ms": 600
+      }
+    ]
+  }
+]

@@ -1,0 +1,21 @@
+{
+  "slug": "_TEMPLATE",
+  "title": "ターゲットの短い名前",
+  "notes": "参照UIの出典・どの状態を撮ったか・再現対象外にする範囲をここに書く",
+  "route": "/",
+  "viewport": {
+    "width": 1280,
+    "height": 800
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "dark",
+  "thresholds": {
+    "rawDiff": 0.05,
+    "layoutDiff": 0.02
+  },
+  "maxTurns": 10,
+  "maxBudgetUsd": 5,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  }
+}

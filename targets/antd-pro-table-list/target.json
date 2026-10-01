@@ -1,0 +1,197 @@
+{
+  "slug": "antd-pro-table-list",
+  "title": "Search Table - Ant Design Pro",
+  "notes": "4状態（既定 / 検索フォーム展開 / モーダル / 2行選択）。全状態が1つの実装で成立する必要がある。参照は1回の読み込みで撮っているので表のデータは全状態で同じ",
+  "source": "https://preview.pro.ant.design/list/table-list",
+  "capturedAt": "2026-09-28T16:42:06.697Z",
+  "route": "/",
+  "viewport": {
+    "width": 1470,
+    "height": 956
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "light",
+  "fullPage": false,
+  "thresholds": {
+    "rawDiff": 0.15,
+    "layoutDiff": 0.01
+  },
+  "maxTurns": 12,
+  "maxBudgetUsd": 30,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  },
+  "radix": {
+    "expected": [
+      {
+        "element": "ヘッダーのアイコンボタン群（ドキュメント・GitHub系・言語切替）",
+        "primitive": "Tooltip",
+        "note": "アイコンだけのボタンなので、ホバーで説明を出す。言語切替は DropdownMenu で開く"
+      },
+      {
+        "element": "言語切替（地球アイコン）",
+        "primitive": "DropdownMenu",
+        "note": "クリックで言語の一覧が開く"
+      },
+      {
+        "element": "ユーザーメニュー（アバター＋ProUser）",
+        "primitive": "DropdownMenu",
+        "note": "クリックで個人設定やログアウトのメニューが開く"
+      },
+      {
+        "element": "アバター画像",
+        "primitive": "Avatar",
+        "note": "丸いユーザーアイコン。画像が無いときの代替表示もある"
+      },
+      {
+        "element": "サイドメニュー（開閉するグループ付き）",
+        "primitive": "Accordion",
+        "note": "Admin/Dashboard/Form/List などが、キャレットで開閉する入れ子のメニュー。List が開いていて Search Table が選択中。複数同時に開けるので type=multiple"
+      },
+      {
+        "element": "検索フォーム（Rule Name・Description）",
+        "primitive": "Form",
+        "note": "ラベル付きの入力欄が並ぶ検索条件のフォーム"
+      },
+      {
+        "element": "入力欄のラベル",
+        "primitive": "Label",
+        "note": "入力欄と結びつくラベル"
+      },
+      {
+        "element": "Expand（下向きの矢印付き）",
+        "primitive": "Collapsible",
+        "note": "クリックで追加の検索条件を開閉する"
+      },
+      {
+        "element": "テーブルのツールバー（New・再読み込み・行の高さ・列の設定）",
+        "primitive": "Toolbar",
+        "note": "テーブル操作のボタンがまとまった群。キーボードで移動できる"
+      },
+      {
+        "element": "行の高さの切替（↕アイコン）",
+        "primitive": "DropdownMenu",
+        "note": "クリックで 標準/中/狭い の選択肢が出る（DropdownMenu の RadioGroup を使う）"
+      },
+      {
+        "element": "列の設定（歯車アイコン）",
+        "primitive": "Popover",
+        "note": "クリックで、列の表示を切り替えるチェックボックスの一覧が開く"
+      },
+      {
+        "element": "作成モーダル",
+        "primitive": "Dialog",
+        "note": "新しいルールを作るフォームのモーダル"
+      },
+      {
+        "element": "全選択／行選択のチェックボックス",
+        "primitive": "Checkbox",
+        "note": "全選択には、一部だけ選んだ状態（indeterminate）もある"
+      },
+      {
+        "element": "右端の浮いた設定ボタン（歯車）",
+        "primitive": "Dialog",
+        "note": "クリックで、見た目を設定するドロワーが右から出る"
+      }
+    ],
+    "notApplicable": [
+      {
+        "element": "ロゴ（Ant Design Pro）",
+        "reason": "ホームへのリンク。素のマークアップで足りる"
+      },
+      {
+        "element": "サイドメニューの項目（Welcome・AI Assistant など）",
+        "reason": "素のリンクで足りる。選択中は背景 #ebebeb"
+      },
+      {
+        "element": "サイドバーの折りたたみボタン（<）",
+        "reason": "素の button で足りる。押すとサイドバーが細くなる"
+      },
+      {
+        "element": "パンくず（List / Search Table）",
+        "reason": "素の nav と ol とリンクで足りる"
+      },
+      {
+        "element": "テキスト入力（Please enter）",
+        "reason": "素の input で足りる。背景は塗りつぶし（#f5f5f5）"
+      },
+      {
+        "element": "Reset ボタン",
+        "reason": "素の button で足りる"
+      },
+      {
+        "element": "Query ボタン（プライマリ）",
+        "reason": "素の button で足りる"
+      },
+      {
+        "element": "New ボタン（＋）",
+        "reason": "素の button で足りる。押すと作成用のモーダルが開く"
+      },
+      {
+        "element": "並べ替えできる列見出し（Number of Service Calls・Last Scheduled at）",
+        "reason": "上下の矢印付き。クリックで昇順と降順が切り替わる。素の button と aria-sort で足りる"
+      },
+      {
+        "element": "Rule Name のリンク（TradeCode NN）",
+        "reason": "素のリンクで足りる。クリックで詳細のドロワーが開く"
+      },
+      {
+        "element": "行の操作リンク（Configuration・Subscribe to alerts）",
+        "reason": "素のリンクで足りる"
+      }
+    ]
+  },
+  "states": [
+    {
+      "name": "default",
+      "note": "初期表示"
+    },
+    {
+      "name": "filters-expanded",
+      "note": "検索フォームを展開",
+      "actions": [
+        {
+          "type": "click",
+          "text": "Expand"
+        },
+        {
+          "type": "wait",
+          "ms": 600
+        }
+      ]
+    },
+    {
+      "name": "new-modal",
+      "note": "New でモーダルを開く",
+      "actions": [
+        {
+          "type": "click",
+          "text": "New"
+        },
+        {
+          "type": "wait",
+          "ms": 900
+        }
+      ]
+    },
+    {
+      "name": "row-selected",
+      "note": "先頭2行を選択（一括操作バーが出る）",
+      "actions": [
+        {
+          "type": "click",
+          "selector": "tbody tr:nth-child(1) input[type=checkbox]"
+        },
+        {
+          "type": "click",
+          "selector": "tbody tr:nth-child(2) input[type=checkbox]"
+        },
+        {
+          "type": "wait",
+          "ms": 600
+        }
+      ]
+    }
+  ],
+  "publishable": true
+}

@@ -1,0 +1,47 @@
+{
+  "slug": "_states-selftest",
+  "title": "状態機構の自己検証",
+  "notes": "参照を自前の出力で作っているので再現の難易度は測れない。状態ごとに別々に撮影・採点されることだけを確かめる。",
+  "route": "/",
+  "viewport": {
+    "width": 1470,
+    "height": 956
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "light",
+  "thresholds": {
+    "rawDiff": 0.15,
+    "layoutDiff": 0.012
+  },
+  "maxTurns": 1,
+  "maxBudgetUsd": 1,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  },
+  "states": [
+    {
+      "name": "default",
+      "note": "初期表示"
+    },
+    {
+      "name": "scrolled",
+      "note": "400px スクロール",
+      "actions": [
+        {
+          "type": "scroll",
+          "y": 400
+        }
+      ]
+    },
+    {
+      "name": "hover-cta",
+      "note": "CTAにホバー",
+      "actions": [
+        {
+          "type": "hover",
+          "text": "続きを読む"
+        }
+      ]
+    }
+  ]
+}

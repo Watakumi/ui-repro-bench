@@ -1,0 +1,174 @@
+{
+  "slug": "github-repo",
+  "title": "GitHub - react/react: The library for web and native user interfaces. · GitHub",
+  "notes": "5断片。上部のダークナビ、リポジトリヘッダーのタブ、ファイル表、右サイドバー（About / Releases / Used by）、README（バッジ・見出し・リスト・コード）、フッター。README のタブバーは sticky。NewsPicks の代替として、公開できる素材で「通しの構造が要る長いページ」を測る",
+  "source": "https://github.com/facebook/react",
+  "capturedAt": "2026-09-29T02:43:37.123Z",
+  "route": "/",
+  "viewport": {
+    "width": 1470,
+    "height": 956
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "light",
+  "fullPage": true,
+  "slices": [
+    "slice-01.png",
+    "slice-02.png",
+    "slice-03.png",
+    "slice-04.png",
+    "slice-05.png"
+  ],
+  "thresholds": {
+    "rawDiff": 0.15,
+    "layoutDiff": 0.01
+  },
+  "maxTurns": 12,
+  "maxBudgetUsd": 30,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  },
+  "radix": {
+    "expected": [
+      {
+        "element": "Platform / Solutions / Resources / Open Source / Enterprise（キャレット付き）",
+        "primitive": "NavigationMenu",
+        "note": "キャレット付きで、ホバーやクリックでメガメニューが開く"
+      },
+      {
+        "element": "検索ボックス（/ キーのヒント付き）",
+        "primitive": "Dialog",
+        "note": "クリックか / キーで検索オーバーレイが開く"
+      },
+      {
+        "element": "ハンバーガー風のメニューボタン",
+        "primitive": "Dialog",
+        "note": "押すとサイドパネルが開く"
+      },
+      {
+        "element": "ブランチ選択 main（キャレット付き）",
+        "primitive": "Popover",
+        "note": "押すとブランチとタグをフィルタできるパネルが開く"
+      },
+      {
+        "element": "緑の Code ボタン（キャレット付き）",
+        "primitive": "Popover",
+        "note": "押すと clone URL のタブを含むパネルが開く"
+      },
+      {
+        "element": "CIチェックのアイコン",
+        "primitive": "HoverCard",
+        "note": "ホバーやクリックでチェック結果の一覧が出る"
+      },
+      {
+        "element": "相対時刻（8 months ago など）",
+        "primitive": "Tooltip",
+        "note": "ホバーで正確な日時が出る"
+      },
+      {
+        "element": "README のタブ（README / Code of conduct / Contributing / MIT license / Security）",
+        "primitive": "Tabs",
+        "note": "クリックで表示するドキュメントが切り替わり、選択中に橙の下線が付く"
+      },
+      {
+        "element": "目次ボタン（リストのアイコン）",
+        "primitive": "Popover",
+        "note": "押すと見出しの目次が開く"
+      },
+      {
+        "element": "コードブロックとコピー ボタン",
+        "primitive": "Tooltip",
+        "note": "コピー ボタンはホバーでツールチップが出て、押すと Copied に変わる"
+      },
+      {
+        "element": "区切り線",
+        "primitive": "Separator",
+        "note": "セクションを分ける横罫線"
+      },
+      {
+        "element": "Contributors のアバターグリッド（6列）",
+        "primitive": "Avatar",
+        "note": "丸いアバター画像。ホバーでユーザー名のツールチップが出る"
+      }
+    ],
+    "notApplicable": [
+      {
+        "element": "GitHubロゴ",
+        "reason": "トップへのリンク。素のマークアップで足りる"
+      },
+      {
+        "element": "Pricing",
+        "reason": "ただのリンク。素のマークアップで足りる"
+      },
+      {
+        "element": "Sign in / Sign up ボタン",
+        "reason": "ただのリンクボタン。素のマークアップで足りる"
+      },
+      {
+        "element": "リポジトリ名 react / react と Public バッジ",
+        "reason": "リンクと表示用のバッジだけ。素のマークアップで足りる"
+      },
+      {
+        "element": "Notifications ボタン",
+        "reason": "未ログイン時はサインインへのリンク。素のマークアップで足りる"
+      },
+      {
+        "element": "Fork 51.4k / Star 251k ボタン（カウンター付き）",
+        "reason": "カウンター付きのボタン。素のマークアップで足りる"
+      },
+      {
+        "element": "リポジトリタブ（Code / Issues 864 / Pull requests 523 / Actions / Security and quality 8 / Insights）",
+        "reason": "ページ遷移するリンクの列で、選択中のものに橙の下線が付く。nav とリンクだけで足りる"
+      },
+      {
+        "element": "973 Branches / 175 Tags",
+        "reason": "ただのリンク。素のマークアップで足りる"
+      },
+      {
+        "element": "Go to file 入力欄",
+        "reason": "素の input で足りる"
+      },
+      {
+        "element": "最新コミットのバー（アバター・作者・メッセージ・… ボタン・チェックマーク・ハッシュ・21,708 Commits）",
+        "reason": "リンクの集まり。… を押すとメッセージが展開されるが、トグル用の button で足りる"
+      },
+      {
+        "element": "ファイル・フォルダ一覧の行（アイコン・名前・コミットメッセージ・更新日時）",
+        "reason": "リンクとホバー時の背景だけ。table で足りる"
+      },
+      {
+        "element": "shields バッジ（license MIT / npm v19.3.0 / Build passing など）",
+        "reason": "2色に塗り分けたラベル付きリンク。SVG か span で描ける"
+      },
+      {
+        "element": "react.dev のリンク",
+        "reason": "ただのリンク"
+      },
+      {
+        "element": "トピックのタグ（declarative / frontend / javascript / library / react / ui）",
+        "reason": "丸みのある薄い青のリンクタグ。素のマークアップで足りる"
+      },
+      {
+        "element": "メタ情報のリンク一覧（Readme / MIT license / … / 51.4k forks / Report repository）",
+        "reason": "アイコン付きのリンクの並び"
+      },
+      {
+        "element": "Releases セクション（件数バッジ・タグアイコン・Latest ラベル・+132 releases）",
+        "reason": "リンクと表示用のラベル"
+      },
+      {
+        "element": "Used by（重なったアバターと +30,111,642）",
+        "reason": "アバターを重ねたリンク"
+      },
+      {
+        "element": "言語の凡例（色の点・言語名・%）",
+        "reason": "言語で絞り込んだ検索へのリンク"
+      },
+      {
+        "element": "フッター（ロゴ・© 2026 GitHub, Inc.・Terms・Privacy など）",
+        "reason": "リンクを横に並べただけ"
+      }
+    ]
+  },
+  "publishable": true
+}

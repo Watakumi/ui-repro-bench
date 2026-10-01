@@ -1,0 +1,126 @@
+{
+  "slug": "antd-pro-form-advanced",
+  "title": "Advanced Form - Ant Design Pro",
+  "notes": "https://preview.pro.ant.design/form/advanced-form から採取。要素の棚卸しと radix.expected は未記入（pnpm extract で埋める）。",
+  "source": "https://preview.pro.ant.design/form/advanced-form",
+  "capturedAt": "2026-09-24T05:23:26.422Z",
+  "route": "/",
+  "viewport": {
+    "width": 1470,
+    "height": 956
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "light",
+  "fullPage": false,
+  "thresholds": {
+    "rawDiff": 0.15,
+    "layoutDiff": 0.01
+  },
+  "maxTurns": 12,
+  "maxBudgetUsd": 24,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  },
+  "radix": {
+    "expected": [
+      {
+        "element": "ドキュメント（本）アイコンボタン",
+        "primitive": "Tooltip",
+        "note": "ラベルなしアイコンなのでホバーで名称を出す想定"
+      },
+      {
+        "element": "ブランチ（フォーク）アイコンボタン",
+        "primitive": "Tooltip",
+        "note": "ラベルなしアイコンなのでホバーで名称を出す想定"
+      },
+      {
+        "element": "言語切替のグローブアイコン",
+        "primitive": "DropdownMenu",
+        "note": "クリックで言語一覧が開く"
+      },
+      {
+        "element": "アバター＋「ProUser」のユーザーメニュー",
+        "primitive": "DropdownMenu",
+        "note": "クリックでアカウントメニューが開く"
+      },
+      {
+        "element": "サイドメニューの開閉グループ（Admin / Dashboard / Form / List / Profile / Result / Exception / Account、右端にキャレット）",
+        "primitive": "Accordion",
+        "note": "キャレット付きで子項目を開閉する（Formのみ展開＝キャレット上向き）"
+      },
+      {
+        "element": "フォーム項目ラベル（14px・入力の8px上）",
+        "primitive": "Label",
+        "note": "入力と紐づくラベル"
+      },
+      {
+        "element": "セレクト（右端にシェブロン、塗りつぶし・高さ32px）",
+        "primitive": "Select",
+        "note": "クリックで候補リストが開き選択できる"
+      },
+      {
+        "element": "日付レンジピッカー（Please select → Please select ＋カレンダーアイコン）",
+        "primitive": "Popover",
+        "note": "クリックでカレンダーをポップオーバー表示する"
+      },
+      {
+        "element": "時刻ピッカー（提醒时间＋時計アイコン）",
+        "primitive": "Popover",
+        "note": "クリックで時刻リストをポップオーバー表示する"
+      },
+      {
+        "element": "固定フッターツールバー（画面下端・高さ約65px・上境界線＋背景すりガラス#f9f9f9で背後をぼかす）",
+        "primitive": "Toolbar",
+        "note": "アクションを並べる固定バー"
+      },
+      {
+        "element": "設定歯車のフローティングボタン（#1890ff・約46x42px・左側だけ角丸）",
+        "primitive": "Dialog",
+        "note": "クリックで設定ドロワーを開く"
+      }
+    ],
+    "notApplicable": [
+      {
+        "element": "ロゴマーク＋「Ant Design Pro」ワードマーク",
+        "reason": "ホームへのリンク。素のaで足りる"
+      },
+      {
+        "element": "サイドメニューの単独項目（Welcome / AI Assistant、アイコン＋14pxラベル、高さ40px・項目間4px）",
+        "reason": "素のリンクとホバー背景で足りる"
+      },
+      {
+        "element": "サブメニュー項目（Basic Form / Step Form / Advanced Form、アイコンなしでインデント）",
+        "reason": "素のリンクで足りる"
+      },
+      {
+        "element": "サイドバー折りたたみトリガー（径約23pxの白丸＋左向きシェブロン、影付き）",
+        "reason": "素のbuttonで足りる（押下でサイドバー幅が変わる）"
+      },
+      {
+        "element": "パンくず「Form / Advanced Form」（14px、前段#8c8c8c・現在ページは濃色）",
+        "reason": "素のリンク＋区切り文字で足りる"
+      },
+      {
+        "element": "塗りつぶしテキスト入力（背景#f5f5f5・枠線なし・高さ32px・角丸6px・プレースホルダー#bfbfbf）",
+        "reason": "素のinputで足りる"
+      },
+      {
+        "element": "URL入力グループ（左に「http://」、右に「.com」を内包した1つの塗りつぶしフィールド）",
+        "reason": "input＋前後アドオンの組版で足りる"
+      },
+      {
+        "element": "メンバー管理テーブル（ヘッダー行＋データ行、右端に「编辑」リンク）",
+        "reason": "素のtableと行内リンクで足りる"
+      },
+      {
+        "element": "Reset ボタン（白地・枠線#d9d9d9・高さ32px・角丸6px）",
+        "reason": "素のbuttonで足りる"
+      },
+      {
+        "element": "Submit ボタン（塗り#1890ff・白文字・高さ32px・角丸6px）",
+        "reason": "素のbuttonで足りる"
+      }
+    ]
+  },
+  "publishable": true
+}

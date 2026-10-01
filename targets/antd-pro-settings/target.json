@@ -1,0 +1,140 @@
+{
+  "slug": "antd-pro-settings",
+  "title": "Account Settings - Ant Design Pro",
+  "notes": "https://preview.pro.ant.design/account/settings から採取。要素の棚卸しと radix.expected は未記入（pnpm extract で埋める）。",
+  "source": "https://preview.pro.ant.design/account/settings",
+  "capturedAt": "2026-09-24T05:23:31.812Z",
+  "route": "/",
+  "viewport": {
+    "width": 1470,
+    "height": 956
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "light",
+  "fullPage": false,
+  "thresholds": {
+    "rawDiff": 0.15,
+    "layoutDiff": 0.01
+  },
+  "maxTurns": 12,
+  "maxBudgetUsd": 24,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  },
+  "radix": {
+    "expected": [
+      {
+        "element": "ヘッダー右のユーティリティアイコン（ドキュメント・ブランチ）",
+        "primitive": "Tooltip",
+        "note": "アイコンのみのボタンでホバー時に説明が要る"
+      },
+      {
+        "element": "言語切替（地球アイコン）",
+        "primitive": "DropdownMenu",
+        "note": "クリックで言語リストが開く"
+      },
+      {
+        "element": "ユーザーメニュー（アバター＋ProUser）",
+        "primitive": "DropdownMenu",
+        "note": "クリックで個人設定・ログアウトのメニューが開く"
+      },
+      {
+        "element": "ヘッダー下の境界線",
+        "primitive": "Separator",
+        "note": "1pxの区切り線のみ"
+      },
+      {
+        "element": "開閉するナビグループ（Admin / Dashboard / Form / List / Profile / Result / Exception / Account）",
+        "primitive": "Accordion",
+        "note": "右端のキャレットで子項目をインライン展開・収納する"
+      },
+      {
+        "element": "設定セクションの縦タブ（基本设置 / 安全设置 / 账号绑定 / 新消息通知）",
+        "primitive": "Tabs",
+        "note": "選択で右のパネル内容が切り替わる。縦向きのタブリスト"
+      },
+      {
+        "element": "タブリストと内容を分ける縦罫線",
+        "primitive": "Separator",
+        "note": "1pxの区切り線のみ"
+      },
+      {
+        "element": "基本情報フォーム全体",
+        "primitive": "Form",
+        "note": "ラベル・入力・送信ボタンのまとまりで検証と送信を扱う"
+      },
+      {
+        "element": "フィールドラベル（邮箱 / 昵称 / 个人简介 / 国家-地区 / 所在省市 / 街道地址 / 联系电话 / 头像）",
+        "primitive": "Label",
+        "note": "入力と関連付けが要る。所在省市のみ太字"
+      },
+      {
+        "element": "国家/地区セレクト（値「中国」、下向きキャレット）",
+        "primitive": "Select",
+        "note": "選択肢のリストを開いて一つ選ぶ"
+      },
+      {
+        "element": "所在省市の連動セレクト2つ（Please select）",
+        "primitive": "Select",
+        "note": "省を選ぶと市の候補が変わる連動セレクト"
+      },
+      {
+        "element": "アバター画像（円形イラスト、直径≈144px CSS）",
+        "primitive": "Avatar",
+        "note": "円形クリップとフォールバックが要る表示専用要素"
+      },
+      {
+        "element": "右端の設定フローティングボタン（歯車、48x48px CSS・画面右辺に半分貼り付き）",
+        "primitive": "Dialog",
+        "note": "クリックでテーマ設定のドロワーが開く。モーダル的なオーバーレイ"
+      }
+    ],
+    "notApplicable": [
+      {
+        "element": "ロゴ＋プロダクト名「Ant Design Pro」",
+        "reason": "ホームへのリンク。素のアンカー＋SVGロゴで足りる"
+      },
+      {
+        "element": "サイドナビの単純項目（Welcome / AI Assistant）",
+        "reason": "アイコン＋ラベルのリンク。素のマークアップで足りる"
+      },
+      {
+        "element": "ナビの子項目（Account Center / Account Settings）",
+        "reason": "素のリンク。選択中はピル状の背景が付くだけ"
+      },
+      {
+        "element": "サイドバー折りたたみハンドル（左向きキャレットの丸ボタン）",
+        "reason": "素のボタン。押すとサイドバーが幅を変える"
+      },
+      {
+        "element": "メール入力（クリア×付き、フォーカス枠）",
+        "reason": "素のinputで足りる。クリアボタンは補助のボタン"
+      },
+      {
+        "element": "ニックネーム入力（塗りつぶし、クリア×付き）",
+        "reason": "素のinputで足りる"
+      },
+      {
+        "element": "自己紹介テキストエリア（プレースホルダ、右下にリサイズハンドル）",
+        "reason": "素のtextareaで足りる"
+      },
+      {
+        "element": "街道地址入力（クリア×付き）",
+        "reason": "素のinputで足りる"
+      },
+      {
+        "element": "联系电话の分割入力（区番「0752」＋番号「268888888」）",
+        "reason": "素のinput 2つで足りる"
+      },
+      {
+        "element": "送信ボタン「更新基本信息」",
+        "reason": "素のbuttonで足りる"
+      },
+      {
+        "element": "アバター変更ボタン「更换头像」（アップロードアイコン付き・アウトライン）",
+        "reason": "素のbutton＋ファイル入力で足りる"
+      }
+    ]
+  },
+  "publishable": true
+}

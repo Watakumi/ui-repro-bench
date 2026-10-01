@@ -1,0 +1,175 @@
+{
+  "slug": "grafana-play",
+  "title": "Grafana Play Home - Examples - Dashboards - Grafana",
+  "notes": "https://play.grafana.org から採取。要素の棚卸しと radix.expected は未記入（pnpm extract で埋める）。",
+  "source": "https://play.grafana.org",
+  "capturedAt": "2026-09-22T08:37:08.962Z",
+  "route": "/",
+  "viewport": {
+    "width": 1470,
+    "height": 956
+  },
+  "deviceScaleFactor": 2,
+  "colorScheme": "dark",
+  "fullPage": false,
+  "thresholds": {
+    "rawDiff": 0.15,
+    "layoutDiff": 0.01
+  },
+  "maxTurns": 12,
+  "maxBudgetUsd": 30,
+  "structure": {
+    "maxAbsoluteRatio": 0.4
+  },
+  "radix": {
+    "expected": [
+      {
+        "element": "サイドバーのナビ項目（Starred / Dashboards / Explore / Drilldown / AI / Alerts & IRM / Machine learning / Testing & synthetics / Observability / Connections / More apps / Administration）",
+        "primitive": "NavigationMenu",
+        "note": "アイコン＋ラベルのリンク群で、現在地のハイライトを持つ"
+      },
+      {
+        "element": "ナビ項目右端のシェブロン（子メニュー展開）",
+        "primitive": "Accordion",
+        "note": "クリックで下位項目が開閉する縦積みの開閉"
+      },
+      {
+        "element": "サイドバー下部のドック切り替えアイコン",
+        "primitive": "Toggle",
+        "note": "押すとメニューのドック状態がオン/オフで切り替わる"
+      },
+      {
+        "element": "コマンドパレット（検索クリック／⌘Kで開く）",
+        "primitive": "Dialog",
+        "note": "モーダルとして前面に開きフォーカスを奪う"
+      },
+      {
+        "element": "新規作成の「＋」ボタン（キャレット付き）",
+        "primitive": "DropdownMenu",
+        "note": "キャレット付きでメニューが開く"
+      },
+      {
+        "element": "ヘルプ「?」ボタン",
+        "primitive": "DropdownMenu",
+        "note": "クリックでヘルプ項目の一覧が開く"
+      },
+      {
+        "element": "AI（スパークル）アイコンボタン",
+        "primitive": "Tooltip",
+        "note": "ラベルなしアイコンなのでホバー時の説明が要る"
+      },
+      {
+        "element": "共有ボタン＋キャレットの分割ボタン",
+        "primitive": "DropdownMenu",
+        "note": "キャレット側から共有方法の一覧が開く"
+      },
+      {
+        "element": "パネルヘッダーのメニュー（ホバーで現れる縦三点）",
+        "primitive": "DropdownMenu",
+        "note": "ホバーで出現しクリックでView/Edit等のメニューが開く"
+      },
+      {
+        "element": "テキストパネル「🧪 What is Grafana Play?」（Grotイラスト＋回り込みテキスト）",
+        "primitive": "ScrollArea",
+        "note": "本文がパネル高さを超えて切れており縦スクロールする"
+      },
+      {
+        "element": "テキストパネル「🏆 Dashboard of the Month」",
+        "primitive": "ScrollArea",
+        "note": "本文が下端で切れてスクロールする"
+      },
+      {
+        "element": "テキストパネル「🌟 Featured Grafana Contributor」",
+        "primitive": "ScrollArea",
+        "note": "本文が下端で切れてスクロールする"
+      },
+      {
+        "element": "コントリビューターの丸アバター",
+        "primitive": "Avatar",
+        "note": "画像＋フォールバックの丸型表示"
+      },
+      {
+        "element": "YouTube埋め込みパネル（サムネイル＋タイトル＋チャンネル名＋再生ボタン＋共有・YouTubeで見るの下部バー）",
+        "primitive": "AspectRatio",
+        "note": "16:9比率を保つ埋め込み枠。再生でプレイヤーに切り替わる"
+      },
+      {
+        "element": "ニュース/ブログ一覧パネル（日付＋サムネイル＋見出しリンク＋抜粋の繰り返し）",
+        "primitive": "ScrollArea",
+        "note": "記事が縦に続きパネル内でスクロールする"
+      },
+      {
+        "element": "記事エントリ間の区切り線",
+        "primitive": "Separator",
+        "note": "意味的な区切りの罫線"
+      },
+      {
+        "element": "右端の縦ドックレール（幅約40px、角丸枠）",
+        "primitive": "Toolbar",
+        "note": "アイコンボタンをまとめた縦並びのツールバー"
+      },
+      {
+        "element": "ドックレールのエクスポート／アウトライン／折りたたみアイコンボタン",
+        "primitive": "Tooltip",
+        "note": "ラベルなしアイコンでホバー説明が必要"
+      },
+      {
+        "element": "ドックレール内の区切り線",
+        "primitive": "Separator",
+        "note": "グループを分ける罫線"
+      },
+      {
+        "element": "コンテンツ領域の縦スクロールバー",
+        "primitive": "ScrollArea",
+        "note": "ページ全体がビューポートを超えてスクロールする"
+      }
+    ],
+    "notApplicable": [
+      {
+        "element": "Grafanaロゴ＋製品名",
+        "reason": "ホームへのリンク。素のリンク＋SVGで足りる"
+      },
+      {
+        "element": "メガメニューを閉じる×ボタン",
+        "reason": "素のアイコンボタンで足りる"
+      },
+      {
+        "element": "パンくず（Dashboards › Examples › Grafana Play Home）",
+        "reason": "nav＋olとリンクの素のマークアップで足りる"
+      },
+      {
+        "element": "検索ボックス（虫眼鏡アイコン＋プレースホルダ＋⌘+kバッジ）",
+        "reason": "見た目は素のinput＋kbd。押下で開くパレット本体は別要素"
+      },
+      {
+        "element": "Sign in リンク",
+        "reason": "素のリンクで足りる"
+      },
+      {
+        "element": "Edit ボタン（鉛筆アイコン＋ラベル）",
+        "reason": "素のbuttonで足りる"
+      },
+      {
+        "element": "バナーのCTAピルボタン6個（Grafana Cloud / Community Resources / Learning Journeys / Webinars and Videos / Support Forum / Upcoming Meetups）",
+        "reason": "素のリンクをボタン風に見せるだけで足りる"
+      },
+      {
+        "element": "リンク見出し「F1 Driver Championship Points」（下線付き）",
+        "reason": "素のリンクで足りる"
+      },
+      {
+        "element": "本文中のインラインリンク「Celestina」",
+        "reason": "素のaで足りる"
+      },
+      {
+        "element": "赤い再生ボタン（オーバーレイ）",
+        "reason": "素のボタンで足りる"
+      },
+      {
+        "element": "記事見出しリンク＋外部リンクアイコン",
+        "reason": "target=_blankの素のリンクで足りる"
+      }
+    ]
+  },
+  "publishable": true
+}
