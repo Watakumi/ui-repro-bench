@@ -1,0 +1,46 @@
+@import 'tailwindcss';
+@source "../../packages/ui/src";
+
+/*
+ * サンドボックスのシェルは配色を持たない。
+ * 参照UIはライトのこともダークのこともあるので、テーマは撮影時の
+ * colorScheme（Playwright が prefers-color-scheme として与える）に従わせ、
+ * 実際の塗りは App.tsx 側で明示する。
+ *
+ * ただし「塗り忘れで素の白が出る」ことは避けたいので、body には
+ * システム色を敷いておく。Canvas / CanvasText は color-scheme に追従するため、
+ * App が背景を指定し忘れてもテーマと矛盾しない下地になる。
+ */
+:root {
+  color-scheme: light dark;
+}
+
+html,
+body,
+#root {
+  height: 100%;
+}
+
+body {
+  margin: 0;
+  background-color: Canvas;
+  color: CanvasText;
+  /*
+   * 先頭に総称（ui-sans-serif / system-ui / -apple-system）を置くと、
+   * Chromium が漢字をシステムUIフォント付属の圧縮メトリクスな CJK
+   * フォールバックで描き、後方の 'Hiragino Sans' に到達しない。
+   * 実在のフォント名を先頭に置いて参照の字面に合わせる。
+   */
+  font-family: 'Avenir Next', 'Hiragino Sans', sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* 撮影の再現性のため、ハーネス側でも無効化するが二重に止めておく。 */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
