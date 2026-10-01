@@ -4,6 +4,7 @@
   "private": true,
   "type": "module",
   "scripts": {
+    "test": "tsx --test harness/*.test.ts",
     "trial": "tsx harness/run.ts",
     "campaign": "tsx harness/campaign.ts",
     "selftest": "tsx harness/selftest.ts",

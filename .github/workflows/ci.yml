@@ -1,0 +1,30 @@
+name: CI
+
+# API もブラウザも使わない範囲だけを回す。
+# エージェントを動かす試行（pnpm trial）と、dev server を立てる selftest は
+# 手元でしか動かせないので CI には入れない。
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  check:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 24
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: 型
+        run: pnpm typecheck
+
+      - name: 失敗カタログの回帰テスト
+        run: pnpm test

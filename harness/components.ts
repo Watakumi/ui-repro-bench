@@ -85,7 +85,12 @@ function findComponents(file: string, source: string): { name: string; hasProps:
  * 実測で誤検出した。Thumb1 / Thumb2 のように「同じ語幹の部品が2つ以上」あるときだけ
  * 連番とみなす。
  */
-function numberedVariants(names: string[]): string[] {
+/**
+ * 連番の部品（Thumb1, Thumb2 …）を拾う。
+ * 同じ語幹が2つ以上あるときだけ連番とみなす。
+ * 1つだけの SectionH2 を連番と誤検出して、ターンを1つ無駄にしたことがある（H-12）。
+ */
+export function numberedVariants(names: string[]): string[] {
   const byStem = new Map<string, string[]>()
   for (const n of names) {
     const m = /^([A-Za-z]+?)(\d+)$/.exec(n)
@@ -93,6 +98,18 @@ function numberedVariants(names: string[]): string[] {
     byStem.set(m[1]!, [...(byStem.get(m[1]!) ?? []), n])
   }
   return [...byStem.values()].filter((g) => g.length >= 2).flat()
+}
+
+/**
+ * 同じ役割の primitive は同一視する。
+ * 抽出エージェントは Form と Label を両方挙げるが、Form.Label は Label そのもの。
+ * 分けて数えていたため、Form に寄せた実装で Label を「落とした」と判定し、
+ * 設定画面で2回ともターンが1つ増えた（H-18）。
+ */
+const SATISFIED_BY: Record<string, string[]> = { Label: ['Form'] }
+
+export function radixSatisfied(expected: string, used: string[]): boolean {
+  return used.includes(expected) || (SATISFIED_BY[expected] ?? []).some((alt) => used.includes(alt))
 }
 
 export async function analyzeComponents(radix?: RadixSpec): Promise<ComponentScore> {
@@ -142,9 +159,7 @@ export async function analyzeComponents(radix?: RadixSpec): Promise<ComponentSco
   // 同じ役割の primitive は同一視する。抽出エージェントは Form と Label を両方挙げるが、
   // Form.Label は Label そのものなので、Form に寄せた実装で Label を「落とした」と数えない
   // （設定画面で2回とも、Form を足したら Label が消えて1ターン増えた）。
-  const SATISFIED_BY: Record<string, string[]> = { Label: ['Form'] }
-  const satisfied = (e: string) =>
-    usedPrimitives.includes(e) || (SATISFIED_BY[e] ?? []).some((alt) => usedPrimitives.includes(alt))
+  const satisfied = (e: string) => radixSatisfied(e, usedPrimitives)
   const radixExpectedUsed = [...new Set(expected.filter(satisfied))]
   const radixExpectedMissing = [...new Set(expected.filter((e) => !satisfied(e)))]
 

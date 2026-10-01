@@ -26,7 +26,7 @@ export type KnowledgeMode =
   | 'hot'
 
 /** 16進カラーコードを伏せる。根拠としての文脈は残す。 */
-function maskHex(text: string): string {
+export function maskHex(text: string): string {
   return text.replace(/#[0-9a-fA-F]{6}\b/g, '#______')
 }
 
@@ -34,7 +34,7 @@ function maskHex(text: string): string {
  * 座標つきの実測値を伏せる。
  * 汎用ファイルに紛れ込んだ具体値への保険で、本来は固有ファイル側にあるべきもの。
  */
-function maskMeasurements(text: string): string {
+export function maskMeasurements(text: string): string {
   return text
     .replace(/\((\d{2,4}),\s*(\d{2,4})\)/g, '(x,y)')
     .replace(/参照\s*[\d.]+\s*\/\s*実装\s*[\d.]+/g, '参照 ○○ / 実装 △△')

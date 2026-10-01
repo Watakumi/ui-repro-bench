@@ -1,0 +1,29 @@
+# 依存の更新。まとめて1本の PR にする。
+# 1つずつ来ると、条件（SDK の版）が実験の途中で動く原因になる（H-24 と同じ形）。
+version: 2
+updates:
+  - package-ecosystem: npm
+    directory: /
+    schedule:
+      interval: weekly
+      day: monday
+    open-pull-requests-limit: 3
+    groups:
+      # 計測の土台。版が変わると過去の数字と比較できなくなるので、
+      # まとめて1本にして差分を読んでから入れる
+      measurement:
+        patterns:
+          - playwright
+          - sharp
+          - pixelmatch
+          - pngjs
+      agent:
+        patterns:
+          - '@anthropic-ai/claude-agent-sdk'
+      dev:
+        dependency-type: development
+
+  - package-ecosystem: github-actions
+    directory: /
+    schedule:
+      interval: monthly
