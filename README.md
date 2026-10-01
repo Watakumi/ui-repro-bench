@@ -1,117 +1,130 @@
 # ui-bench
 
-参照スクリーンショットから UI を再現させ、**できたかどうかを機械で判定する**ベンチマーク。
+Reproduce a UI from a reference screenshot, and **decide mechanically whether it worked**.
 
-スクショから UI を作らせるツールは多いが、合否を人が目で決めている。
-ここでは判定を5段のゲートに落とし、通らなければ差分を添えてもう一度指示する。
-必要だったプロンプト数・費用・品質を記録する。
+Plenty of tools turn a screenshot into code. Almost none of them judge the result —
+a human looks at it and decides. Here the verdict is five gates. Fail one and the
+agent gets another turn with the diff attached. What gets recorded is the number of
+prompts it took, what it cost, and how close it landed.
+
+> 日本語版は [README.ja.md](README.ja.md) にあります。
 
 ```
-参照スクショ ──▶ brain（差分を読んで指示を出す）
-                   │
-                   ├─▶ builder（sandbox/src/App.tsx を書く）
-                   │
-                撮影 ──▶ 5段のゲート ──▶ 通れば収束 / 落ちたらもう1ターン
+reference ──▶ brain (reads the diff, writes the instruction)
+                 │
+                 ├─▶ builder (edits sandbox/src/App.tsx)
+                 │
+             capture ──▶ five gates ──▶ pass: converged / fail: one more turn
 ```
 
-## 判定
+## The gates
 
-| ゲート | 見るもの | 捨てているもの |
+| Gate | What it looks at | What it throws away |
 | --- | --- | --- |
-| ピクセル `layoutDiff` | グレースケール化＋ぼかしの差分 | 字形の差。**色相も捨てる** |
-| ピクセル `rawDiff` | 素の差分 | なし（色相の誤りはここだけが拾う） |
-| フロー | DOM。内部スクロール容器・ヘッダーの重複・見出しの重複 | — |
-| 構造 | 絶対配置の比率 | — |
-| 部品 | 期待した Radix primitive を使っているか | — |
-| 審査 | LLM が参照と実装を見比べる | — |
+| pixel `layoutDiff` | grayscale + blur, then diff | glyph shapes — **and hue** |
+| pixel `rawDiff` | raw diff | nothing; this is the only gate that catches a wrong colour |
+| flow | DOM: inner scrollers, duplicated headers, duplicated headings | — |
+| structure | ratio of absolutely-positioned nodes | — |
+| components | whether the expected Radix primitives are actually used | — |
+| judge | an LLM compares reference and result | — |
 
-ゲートが増えたのは、**1つ前のゲートを満点でくぐり抜ける実装が実際に出たから**。
-その経緯は [`harness/knowledge/FAILURES.md`](harness/knowledge/FAILURES.md) に全部ある。
+Each gate exists because an implementation walked through the previous ones with a
+perfect score and was still wrong. The whole history is in
+[`harness/knowledge/FAILURES.md`](harness/knowledge/FAILURES.md).
 
-## 使う
+## Usage
 
 ```sh
 pnpm install
 pnpm exec playwright install chromium
 
-# 参照を撮る（第三者サイトのスクショは同梱していないので、各自で撮る）
+# Capture a reference. Third-party screenshots are not shipped — take your own.
 pnpm target:add my-target https://example.com
-pnpm target:add my-target https://example.com --scroll 0,820,1640,2460   # 長いページを断片で
-pnpm capture:states my-target                                           # 状態つき（要 states.json）
+pnpm target:add my-target https://example.com --scroll 0,820,1640,2460   # long page, in slices
+pnpm capture:states my-target                                           # stateful (needs states.json)
 
-# どの要素をどの primitive で作れるかを棚卸しする
+# Inventory which elements map to which primitive
 pnpm extract targets/my-target --write
 
-# 回す
+# Run
 pnpm trial targets/my-target
-UI_BENCH_KNOWLEDGE=none pnpm trial targets/my-target   # 蓄積知見なしで
+UI_BENCH_KNOWLEDGE=none pnpm trial targets/my-target   # without accumulated knowledge
 
-# 見る
-pnpm report      # 条件ごとの集計
-pnpm gallery     # 参照と成果物を並べた HTML
+# Look
+pnpm report      # per-condition aggregate
+pnpm gallery     # HTML with reference and result side by side
 ```
 
-### 条件を指定する環境変数
+### Environment variables
 
-| 変数 | 既定 | 意味 |
+| Variable | Default | Meaning |
 | --- | --- | --- |
-| `UI_BENCH_KNOWLEDGE` | `general` | `none` 蓄積なし / `general` 汎用のみ / `full` 汎用＋そのターゲットの固有 |
-| `UI_BENCH_VARIANT` | `A` | `A` 段階分けなし / `B` 構造抽出→骨格→精緻化 |
-| `UI_BENCH_MODEL` | `opus` | モデル。解決後のIDが `summary.json` に残る |
-| `UI_BENCH_NO_PROBE` | — | `1` で計測道具を渡さない（アブレーション） |
-| `UI_BENCH_NO_RADIX` | — | `1` で Radix の指定とゲートを外す |
-| `UI_BENCH_NO_ISOLATION` | — | `1` で隔離しない |
-| `UI_BENCH_LAYOUT_THRESHOLD` | target.json | `layoutDiff` の閾値を上書き |
+| `UI_BENCH_KNOWLEDGE` | `general` | `none` nothing accumulated / `general` transferable only / `full` plus this target's specifics |
+| `UI_BENCH_VARIANT` | `A` | `A` single phase / `B` extract → skeleton → refine |
+| `UI_BENCH_MODEL` | `opus` | Model alias. The resolved id is recorded in `summary.json` |
+| `UI_BENCH_NO_PROBE` | — | `1` withholds the measuring tools (ablation) |
+| `UI_BENCH_NO_RADIX` | — | `1` drops the Radix requirement and its gate |
+| `UI_BENCH_NO_ISOLATION` | — | `1` disables isolation |
+| `UI_BENCH_LAYOUT_THRESHOLD` | per target | overrides the `layoutDiff` threshold |
 
-## 測定を信じるための仕掛け
+## Making the measurement trustworthy
 
-このリポジトリで一番時間を使ったのは生成ではなく、**計測が嘘をつかないようにすること**。
+Most of the effort in this repository went into the measuring side, not the generating side.
 
-- **`pnpm selftest <target> <既知の正解>`** — エージェントを動かさずにハーネス自身を検査する。
-  試行本体が読み込めるか、振り返りが溜まっていないか、汎用知見にターゲット名が混ざっていないかも見る
-- **隔離** — 試行のあいだ、知見の原本・他ターゲット・抽出結果・過去の成果物をリポジトリの外へ退避する。
-  「条件を揃えた」の証明は、消したことではなく**届かないこと**。異常終了時は `pnpm isolate:restore`
-- **`pnpm audit:gates`** — どのゲートが実際に何回落としたかを数える。
-  数えたら、絶対配置のゲートは312ターンで**発火0回**だった（保険として残している）
-- **`pnpm judge:repeat <runId>`** — 同じ成果物を何度も採点させて LLM 審査のぶれを測る。
-  実測で平均点が 0.8 ぶれるので、**スコアで条件を比較しない**
-- **`pnpm reflect --pending`** — 試行から知見を抽出する。未反映が溜まると selftest が落ちる
-- **`pnpm trace`** — 1ターンの内側の往復回数をログから数える。外側のターン数では見えない差が出る
+- **`pnpm selftest <target> <known-good App.tsx>`** — checks the harness itself without
+  spending a single agent call: that the trial entrypoint even loads, that reflection
+  isn't piling up, that the general knowledge has no target names leaking into it.
+- **Isolation** — during a trial the knowledge originals, the other targets, the extraction
+  output and every past result are moved out of the repository. Proving the conditions were
+  equal means showing they were **unreachable**, not that you deleted something.
+  `pnpm isolate:restore` recovers after a crash.
+- **`pnpm audit:gates`** — counts how often each gate actually rejected a turn. Counting
+  showed the absolute-positioning gate had fired **zero times in 312 turns** (kept as insurance).
+- **`pnpm judge:repeat <runId>`** — scores the same result repeatedly to measure the LLM
+  judge's own noise. It moves by 0.8 points, so **the scores are not used to compare conditions**.
+- **`pnpm reflect --pending`** — distils knowledge out of finished trials. Let it pile up and
+  selftest fails, so the next batch cannot start.
+- **`pnpm trace`** — counts the round trips *inside* one turn, where differences hide that the
+  outer turn count cannot show.
 
-## 知見は汎用と固有を分ける
+## Knowledge is split: transferable vs. target-specific
 
-| | 中身 |
+| | Contents |
 | --- | --- |
-| [`harness/knowledge/GENERAL.md`](harness/knowledge/GENERAL.md) | 別のターゲットでも成り立つ手順・技法・失敗の型。**サービス名を書かない**（selftest が検査する） |
-| `harness/knowledge/targets/<slug>.md` | その画面の実測値・座標・断片ごとの違い |
+| [`harness/knowledge/GENERAL.md`](harness/knowledge/GENERAL.md) | Procedure, technique and failure modes that hold on any target. **No service names** — selftest enforces this |
+| `harness/knowledge/targets/<slug>.md` | Measured values, coordinates, per-slice differences for one screen |
 
-混ぜていたときは「知見でターン数が減る」という結論が出たが、
-**抽出元のターゲットでしか再現しなかった**。分けて初めて移植性を測れる。
+While the two were mixed, the data said "knowledge cuts the number of turns." It only
+reproduced on the target the knowledge had been distilled from. Splitting them is what
+made transferability measurable at all.
 
-## 分かったこと
+## What the numbers said
 
-- **モデルで結論が変わる**。同条件で Opus 5.5 は1ターン $2、Sonnet 5 は11〜12ターン $89〜165 で未収束
-- 蓄積知見は**1ターン目の精度**を上げる（誤差が約半分）。
-  手順だけでは届かない画面ではターン削減になり、届く画面では品質の上積みになる
-- **無駄になったターンの大半は、エージェントではなく計測側の欠陥だった**（Goodhart 5件に対しハーネス欠陥 30件）
+- **The conclusion depends on the model.** Same task, same conditions: Opus 5.5 converged in
+  1 turn for $2; Sonnet 5 ran 11–12 turns for $89–165 and never converged.
+- Accumulated knowledge improves **first-turn accuracy** (roughly halves the error). On a
+  screen the base procedure cannot reach, that becomes fewer turns; on one it can reach, it
+  becomes a little more quality for more money.
+- **Most of the wasted turns were defects in the measurement, not the agent** — 5 cases of
+  the agent gaming a metric against 30 defects in the harness itself.
 
-## 参照スクリーンショットを同梱していない理由
+## Why the reference screenshots are not in the repository
 
-第三者の UI は、権利の扱いが1つ1つ違う。`target.json`（撮影条件・閾値・期待 primitive）だけを置き、
-画像は `pnpm target:add` で各自が撮り直す構成にしてある。
+Rights differ site by site. Only `target.json` is committed — capture settings, thresholds,
+expected primitives. The images come from `pnpm target:add` on your machine.
 
-## 構成
+## Layout
 
 ```
-harness/        計測と試行のループ
-  knowledge/    知見（汎用／ターゲット別）と失敗カタログ
-targets/        ターゲットの仕様（画像は gitignore）
-sandbox/        実装先。React 19 + Tailwind v4 + Radix UI
-packages/ui/    試行をまたいで残す部品ライブラリ
-docs/           判断の記録
-articles/       書きかけの記事
+harness/        measurement and the trial loop
+  knowledge/    knowledge (general / per target) and the failure catalogue
+targets/        target specs (images are gitignored)
+sandbox/        where the implementation goes. React 19 + Tailwind v4 + Radix UI
+packages/ui/    component library that survives across trials
+docs/           decisions, with the numbers behind them
+articles/       draft write-up
 ```
 
-## ライセンス
+## Licence
 
-MIT。ただし `targets/` で参照する第三者サイトの UI 自体は各サイトの権利に従う。
+MIT. The third-party UIs referenced from `targets/` remain under their own terms.
