@@ -29,7 +29,7 @@
     "score": "tsx harness/score-cli.ts"
   },
   "dependencies": {
-    "@anthropic-ai/claude-agent-sdk": "^0.3.282",
+    "@anthropic-ai/claude-agent-sdk": "^0.3.283",
     "pixelmatch": "^7.1.0",
     "playwright": "^1.50.0",
     "pngjs": "^7.0.0",
