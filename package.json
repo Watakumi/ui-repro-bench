@@ -38,12 +38,12 @@
   },
   "devDependencies": {
     "@shadcn/lint": "^0.2.0",
-    "@types/node": "^24.0.0",
+    "@types/node": "^26.6.4",
     "@types/pngjs": "^6.0.5",
-    "@typescript-eslint/parser": "^8.70.1",
+    "@typescript-eslint/parser": "^8.71.0",
     "eslint": "^10.11.0",
-    "tsx": "^4.19.0",
-    "typescript": "^5.7.0"
+    "tsx": "^4.23.15",
+    "typescript": "^7.0.2"
   },
   "description": "参照スクリーンショットからのUI再現を、機械的な合否で測るベンチマークと検証ツール",
   "packageManager": "pnpm@11.22.0",
